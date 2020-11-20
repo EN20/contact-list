@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<h:head>
+</h:head>
+
+<h:body>
+    <h:form id="contactForm">
+        <p:dataTable
+                id="contactDataTable"
+                value="#{contactBean.contacts}"
+                var="contact"
+                paginator="true"
+                rows="10"
+                lazy="true"
+                filterDelay="1000">
+            <p:column headerText="id">
+                <p:outputLabel value="#{contact.id}"/>
+            </p:column>
+            <p:column headerText="name" filterBy="#{contact.name}">
+                <p:outputLabel value="#{contact.name}"/>
+            </p:column>
+            <p:column headerText="image">
+                <p:graphicImage value="#{contact.imageUrl}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+
+</html>
