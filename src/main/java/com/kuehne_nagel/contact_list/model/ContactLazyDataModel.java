@@ -23,6 +23,14 @@ public class ContactLazyDataModel extends LazyDataModel<Contact> {
 
     private Page<Contact> contacts;
 
+    /**
+     * this method is called by the data table whenever you push the page buttons or search anything
+     * @param first the first index of data
+     * @param pageSize the size of data
+     * @param sortBy sorted fields
+     * @param filterBy filtered filed
+     * @return a list of requested data
+     */
     @Override
     public List<Contact> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
         if (filterBy.isEmpty() || filterBy.get(NAME_COLUMN).getFilterValue() == null)
