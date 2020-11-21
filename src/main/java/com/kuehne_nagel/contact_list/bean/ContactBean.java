@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * A bean to connect the back-end side to front-end for serving contact information
+ * A bean to connect the back-end side to the front-end for serving contact information
  */
 @Named
 @Data

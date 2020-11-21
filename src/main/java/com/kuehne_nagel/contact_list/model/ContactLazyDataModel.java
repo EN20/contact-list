@@ -12,21 +12,23 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Contact lazy data model to support lazy pagination
+ * Contact lazy data model to support lazy pagination for data table
  */
 @RequiredArgsConstructor
 public class ContactLazyDataModel extends LazyDataModel<Contact> {
 
+    private static final String NAME_COLUMN = "name";
+
     private final ContactService contactService;
 
-    Page<Contact> contacts;
+    private Page<Contact> contacts;
 
     @Override
     public List<Contact> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-        if (filterBy.isEmpty() || filterBy.get("name").getFilterValue() == null)
+        if (filterBy.isEmpty() || filterBy.get(NAME_COLUMN).getFilterValue() == null)
             contacts = contactService.getContacts(first, pageSize);
         else
-            contacts = contactService.searchContactsByName(filterBy.get("name").getFilterValue().toString(), first, pageSize);
+            contacts = contactService.searchContactsByName(filterBy.get(NAME_COLUMN).getFilterValue().toString(), first, pageSize);
         return contacts.get().collect(Collectors.toList());
     }
 
